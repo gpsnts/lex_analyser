@@ -1,0 +1,6 @@
+#!/bin/sh
+
+rm a.out 2> /dev/null;
+flex -o scanner.cpp scanner.l;
+gcc lex.yy.c;
+./a.out Codigo1.txt
