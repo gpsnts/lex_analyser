@@ -1,7 +1,18 @@
 #include <stdio.h>
 #include <conio.h>
 
-void CalculoMedia() 
+int VerificaNumero() 
 { 
-    float Media;
+    int num; 
+    string s; 
+     
+    printf ("Digite um número: "); 
+    scanf ("%d",&num); 
+     
+    if (num>10) 
+    { 
+        printf ("\n\n O número é maior que 10"); 
+        s = "errou"; 
+    }
+    return 0; 
 }

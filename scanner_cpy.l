@@ -2,25 +2,9 @@
 %{
 	#include <math.h>
 	#include <stdio.h>
-
-	#include <iostream>
-	#include <cstdlib>
-	#include "scanner.hpp"
-	#include "interpreter.hpp"
-	#include "parser.hpp"
-	#include "location.hh"
-
-	#define yyterminate() LexTrabParser::Parser::make_END(LexTrabParser::location());
-	#define YY_USER_ACTION m_driver.increaseLocation(yyleng);
-
-	using namespace std;
 %}
 
-%option nodefault
-%option noyywrap
-%option c++
-%option yyclass="Scanner"
-%option prefix="LexTrabParser_"
+PARENTHESIS [\(\)]
 
 KEYWORD "if"|"else"|"int"|"float"|"void"|"return"|"printf"
 HEADER "#include "["<]([^">]+)*[">]
@@ -80,12 +64,3 @@ LITERAL_STRING \".*\"
 . { printf("", yytext); }
 
 %%
-
-int main(int argc, char *argv[]){
-	printf("\n--------------------------------Analisador (lex)------------------------------\n\n");
-
-	yyin = fopen(argv[1], "r");
-	yylex();
-	fclose(yyin);
-	return 0;
-}
