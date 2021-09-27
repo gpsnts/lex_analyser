@@ -63,9 +63,9 @@ LITERAL_STRING \".*\"
 
 {KEYWORD} { printf("[reserved_word, %s]\n", yytext); }
 
-{DIGIT}+ { printf("[num, %d]\n", atoi(yytext)); }
-
 {DIGIT}"."{DIGIT}* {printf("[num, %.1f]\n", atof(yytext));}
+
+{DIGIT}+ { printf("[num, %d]\n", atoi(yytext)); }
 
 {ID} {printf("[id, %s]\n", yytext);}
 
@@ -80,12 +80,3 @@ LITERAL_STRING \".*\"
 . { printf("", yytext); }
 
 %%
-
-int main(int argc, char *argv[]){
-	printf("\n--------------------------------Analisador (lex)------------------------------\n\n");
-
-	yyin = fopen(argv[1], "r");
-	yylex();
-	fclose(yyin);
-	return 0;
-}

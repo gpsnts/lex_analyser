@@ -13,7 +13,7 @@
     #include <string>
     #include <vector>
     #include <stdint.h>
-    #include "command.h"
+    #include "command.hpp"
 
     using namespace std;
 
@@ -23,27 +23,17 @@
     }
 }
 
-// Bison calls yylex() function that must be provided by us to suck tokens
-// from the scanner. This block will be placed at the beginning of IMPLEMENTATION file (cpp).
-// We define this function here (function! not method).
-// This function is called only inside Bison, so we make it static to limit symbol visibility for the linker
-// to avoid potential linking conflicts.
 %code top
 {
     #include <iostream>
-    #include "scanner.h"
+    #include "scanner.hpp"
     #include "parser.hpp"
-    #include "interpreter.h"
+    #include "interpreter.hpp"
     #include "location.hh"
     
-    // yylex() arguments are defined in parser.y
     static LexTrabParser::Parser::symbol_type yylex(LexTrabParser::Scanner &scanner, LexTrabParser::Interpreter &driver) {
         return scanner.get_next_token();
     }
-    
-    // you can accomplish the same thing by inlining the code using preprocessor
-    // x and y are same as in above static function
-    // #define yylex(x, y) scanner.get_next_token()
     
     using namespace LexTrabParser;
 }
