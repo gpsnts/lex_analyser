@@ -1,24 +1,8 @@
 %option noyywrap
 %{
-	#include <iostream>
-	#include <cstdlib>
 	#include <math.h>
 	#include <stdio.h>
-	#include "scanner.hpp"
-	#include "parser.hpp"
-	#include "location.hh"
-
-	using namespace std;
-
-	#define yyterminate() LexTrabParser::Parser::make_END(LexTrabParser::location());
-	#define YY_USER_ACTION m_driver.increaseLocation(yyleng);
 %}
-
-%option nodefault
-%option noyywrap
-%option c++
-%option yyclass="Scanner"
-%option prefix="LexTrabParser_"
 
 KEYWORD "if"|"else"|"int"|"float"|"void"|"return"
 HEADER "#include "["<]([^">]+)*[">]
