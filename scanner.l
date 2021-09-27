@@ -34,7 +34,13 @@ printf("Palavra reservada encontrada: %s\n ", yytext);}
 [ \t\n]+
 
 . printf("Caractere nao reconhecido: %s\n", yytext);
-
-<<EOF>>     { return yyterminate(); }
-
 %%
+
+int main(int argc, char *argv[]){
+	printf("\n--------------------------------Analisador (lex)------------------------------\n\n");
+
+	yyin = fopen(argv[1], "r");
+	yylex();
+	fclose(yyin);
+	return 0;
+}
