@@ -65,7 +65,7 @@
 
 program : {
 	cout << "*** CLI do gerado pelo flex ***" << endl;
-	cout << endl << "prompt> ";
+	cout << endl << "input> ";
   driver.clear();
 };
     
